@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistolines Company</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #FFEB00; /* Bright yellow background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #FFEB00;
+            max-width: 1000px; /* Max width to limit content size on large screens */
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 40px;
+            color: black;
+            text-align: center;
+        }
+
+        .logo-text span {
+            color: red;
+        }
+
+        .logo-subtext {
+            font-size: 18px;
+            color: black;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .text-content {
+            margin-left: 20px;
+            border-left: 2px solid black;
+            padding-left: 20px;
+        }
+
+        .headline {
+            font-weight: bold;
+            font-size: 36px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .subheadline {
+            font-size: 18px;
+            color: black;
+        }
+
+        .subheadline span {
+            color: red;
+            font-weight: bold;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensures it stays on top of other content */
+        }
+    </style>
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-lg navbar-blue bg-blue w-100">
+        <a class="navbar-brand" href="#">LogistoLines</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="logo">
+            <div class="logo-text">LOGISTO<span>LINES</span></div>
+            <div class="logo-subtext">STORAGE &amp; COURIER</div>
+        </div>
+        <div class="text-content">
+            <div class="headline">Happening now</div>
+            <div class="subheadline">Register &#8226; Brand &#8226; Earn<br>
+                <div class="flex justify-center space-x-4 animate__animated animate__fadeInUp">
+                    <button id="signInBtn" class="btn btn-primary"><a href="signup.html" style="color: white;">Register</a></button>
+                    <button id="registerBtn" class="btn btn-secondary"><a href="login.html" style="color: white;">Log In</a></button>
+                    <button id="registerBtn" class="btn btn-primary"><a href="admin_login.html" style="color: white;">Admin</a></button>
+                </div>
+                <span>Join today.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for handling modals -->
+    <script>
+        document.getElementById('signInBtn').addEventListener('click', function() {
+            $('#signInModal').modal('show');
+        });
+
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            $('#registerModal').modal('show');
+        });
+    </script>
+</body>
+<br>
+<footer>
+    <div class="container mx-auto text-center">
+        <div class="flex justify-center space-x-4 mb-4">
+            <a href="mailto:logistolinesltd@gmail.com" class="hover:text-blue-500">
+                <i class="fas fa-envelope fa-2x"></i>
+            </a>
+            <a href="tel:+254774942739" class="hover:text-blue-500">
+                <i class="fas fa-phone fa-2x"></i>
+            </a>
+            <a href="https://wa.me/+254774942739" target="_blank" class="hover:text-green-500">
+                <i class="fab fa-whatsapp fa-2x"></i>
+            </a>
+            <a href="https://www.facebook.com/logistolines" target="_blank" class="hover:text-blue-700">
+                <i class="fab fa-facebook fa-2x"></i>
+            </a>
+            <a href="https://www.instagram.com/logistolines" target="_blank" class="hover:text-pink-500">
+                <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://www.tiktok.com/logistolines" target="_blank" class="hover:text-black">
+                <i class="fab fa-tiktok fa-2x"></i>
+            </a>
+        </div>
+    </div>
+    <p>&copy; 2024 Logistolines. All rights reserved.</p>
+</footer>
+</html>

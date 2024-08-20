@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<nav>
+    <a href="customer.html">Add Customer</a>
+</nav>
+<body class="bg-gray-400">
+    <div class="container mx-auto mt-5">
+        <div class="max-w-md mx-auto bg-white p-5 rounded-md shadow-md">
+            <h2 class="text-2xl font-bold text-center mb-4">Profile</h2>
+            <form id="profileForm" action="profile.php" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="store_name">Store Name</label>
+                    <input type="text" class="form-control" id="store_name" name="store_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="location_county">County</label>
+                    <input type="text" class="form-control" id="location_county" name="location_county" required>
+                </div>
+                <div class="form-group">
+                    <label for="location_street">Street</label>
+                    <input type="text" class="form-control" id="location_street" name="location_street" required>
+                </div>
+                <div class="form-group">
+                    <label for="location_building">Building</label>
+                    <input type="text" class="form-control" id="location_building" name="location_building" required>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacity</label>
+                    <input type="number" class="form-control" id="capacity" name="capacity" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-4">Update Profile</button>
+                <a href="logout.php">Logout</a>
+            </form>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript to populate the form with user data -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('profile.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('username').value = data.username;
+                    document.getElementById('email').value = data.email;
+                    document.getElementById('store_name').value = data.store_name;
+                    document.getElementById('location_county').value = data.location_county;
+                    document.getElementById('location_street').value = data.location_street;
+                    document.getElementById('location_building').value = data.location_building;
+                    document.getElementById('capacity').value = data.capacity;
+                });
+        });
+    </script>
+</body>
+</html>

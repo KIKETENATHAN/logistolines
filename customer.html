@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto mt-5">
+        <div class="max-w-md mx-auto bg-white p-5 rounded-md shadow-md">
+            <h2 class="text-2xl font-bold text-center mb-4">Client</h2>
+            <form id="profileForm" action="customer_entry.php" method="POST" enctype="multipart/form-data" onsubmit="event.preventDefault(); initiateSTKPush();">
+                <hr>
+                <h3 class="text-xl font-semibold mb-2">Customer Entry</h3>
+                <div class="form-group">
+                    <label for="customer_name">Customer Name</label>
+                    <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_id">Customer ID</label>
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_email">Customer Email</label>
+                    <input type="email" class="form-control" id="customer_email" name="customer_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="item_description">Item Description</label>
+                    <textarea class="form-control" id="item_description" name="item_description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="storage_duration">Storage Duration (in hours)</label>
+                    <input type="number" class="form-control" id="storage_duration" name="storage_duration" required>
+                </div>
+                <div class="form-group">
+                    <label for="item_photo">Upload Item Photo</label>
+                    <input type="file" class="form-control-file" id="item_photo" name="item_photo">
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount (KES)</label>
+                    <input type="number" class="form-control" id="amount" name="amount" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-4">Submit Customer Entry</button>
+                <button type="button" class="print-btn-primary btn-block mt-4" onclick="printCustomerInfo()">Print Receipt</button>
+            </form>
+            <hr>
+            <a href="profile.php" style="margin: 40%;">BACK</a>
+            <hr>
+        </div>
+    </div>
+    <script>
+        function printCustomerInfo() {
+            var customerForm = document.getElementById("customerForm");
+            var popupWin = window.open('', '_blank', 'width=600,height=600');
+            popupWin.document.open();
+            popupWin.document.write('<html><head><title>Print Customer Information</title></head><body>');
+            popupWin.document.write('<h2>Customer Information</h2>');
+            popupWin.document.write('<p><strong>Customer Name:</strong> ' + document.getElementById("customer_name").value + '</p>');
+            popupWin.document.write('<p><strong>Phone Number:</strong> ' + document.getElementById("phone_number").value + '</p>');
+            popupWin.document.write('<p><strong>Customer ID:</strong> ' + document.getElementById("customer_id").value + '</p>');
+            popupWin.document.write('<p><strong>Email:</strong> ' + document.getElementById("customer_email").value + '</p>');
+            popupWin.document.write('<p><strong>Item Description:</strong> ' + document.getElementById("item_description").value + '</p>');
+            popupWin.document.write('<p><strong>Storage Duration:</strong> ' + document.getElementById("storage_duration").value + '</p>');
+            popupWin.document.write('<p><strong>Item Photo:</strong> ' + document.getElementById("item_photo").value + '</p>');
+            popupWin.document.write('</body></html>');
+            popupWin.document.close();
+            popupWin.print();
+        }
+
+        function initiateSTKPush() {
+            const formData = new FormData(document.getElementById('profileForm'));
+
+            fetch('mpesa_stk_push.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ResponseCode === "0") {
+                    alert('Payment initiated. Please complete the payment on your phone.');
+                    document.getElementById('profileForm').submit();
+                } else {
+                    alert('Payment failed: ' + data.errorMessage);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+    </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
